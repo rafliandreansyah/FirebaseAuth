@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_login.setOnClickListener(this)
         register.setOnClickListener(this)
+        reset_password.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -30,6 +31,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.btn_login -> {
                 login()
+            }
+            R.id.reset_password -> {
+                startActivity(Intent(this, ResetPasswordActivity::class.java))
             }
         }
     }

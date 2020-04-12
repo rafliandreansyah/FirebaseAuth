@@ -40,4 +40,13 @@
         android:layout_marginVertical="8dp"
         android:text="Login"/>
 
+    <TextView
+        android:id="@+id/reset_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset password"
+        android:textStyle="bold"
+        android:layout_marginVertical="8dp"
+        android:textColor="#000"/>
+
 </LinearLayout>
