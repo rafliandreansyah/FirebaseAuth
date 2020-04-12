@@ -45,6 +45,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_verification -> {
                 emailVerification()
             }
+            R.id.btn_delete -> {
+                deleteAccount()
+            }
         }
     }
 
@@ -60,6 +63,17 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             if (task.isSuccessful){
                 Toast.makeText(this, "Cek email untuk verifikasi!!", Toast.LENGTH_SHORT).show()
                 Log.d(HomeActivity::class.java.name, "${task.isSuccessful}")
+            }
+        }
+    }
+
+    private fun deleteAccount(){
+        val user = firebaseAuth.currentUser
+        user?.delete()?.addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                Log.d(HomeActivity::class.java.name, "User berhasil di hapus")
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         }
     }
