@@ -3,7 +3,9 @@ package com.azhara.firebaseauth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -40,6 +42,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_logout -> {
                 logout()
             }
+            R.id.btn_verification -> {
+                emailVerification()
+            }
         }
     }
 
@@ -47,5 +52,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         firebaseAuth.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    private fun emailVerification(){
+        val user = firebaseAuth.currentUser
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                Toast.makeText(this, "Cek email untuk verifikasi!!", Toast.LENGTH_SHORT).show()
+                Log.d(HomeActivity::class.java.name, "${task.isSuccessful}")
+            }
+        }
     }
 }
